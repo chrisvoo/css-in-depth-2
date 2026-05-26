@@ -17,6 +17,7 @@
       display: inline-block;
     }
 
+    /* more specific than a simple class like .featured */
     #main-nav a {
       color: white;
       background-color: #13a4a4;
@@ -25,6 +26,7 @@
       text-decoration: none;
     }
 
+    /* !important; needed to override ID specificity, must be avoided as much as possible */
     .featured {
       background-color: orange;
     }
