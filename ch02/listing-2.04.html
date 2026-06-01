@@ -15,4 +15,12 @@
 
 <body>
   <p class="slogan">We love coffee</p>
+  <main>
+    What makes ems tricky is when you use them for both font size and any other properties on the same element.
+    When you do this, the browser must calculate the font size first, and then it uses that value to calculate 
+    the other values. Both properties can have the same declared value, but they'll have different computed values.<br/>
+    In this example, padding has a specified value of 1.2 em. This, multiplied by 19.2 px (the current element's 
+    font size), produces a calculated value of 23.04 px. Even though font-size and padding have the same 
+    specified value, their calculated values are different.
+  </main>
 </body>

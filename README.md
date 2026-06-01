@@ -11,6 +11,15 @@ Code listings from [CSS In Depth, second edition](https://www.manning.com/books/
 }
 ```
 
+- [CSS in Depth, 2nd edition](#css-in-depth-2nd-edition)
+  - [Cascade, specificity, and inheritance](#cascade-specificity-and-inheritance)
+    - [Special values](#special-values)
+    - [Feature queries using @supports()](#feature-queries-using-supports)
+  - [Working with relative units](#working-with-relative-units)
+- [Resources](#resources)
+
+
+
 ##  Cascade, specificity, and inheritance
 
 When declarations conflict, the cascade considers six criteria in the following order to resolve the difference:
@@ -56,7 +65,7 @@ You can use a feature query to provide a larger set of styles depending on wheth
 @supports (display: grid) { ... }
 ```
 
-If the browser understands the declaration (in this case, it supports grid), it applies any rulesets that appear between the braces. If it doesn’t understand this, it will ignore them.
+If the browser understands the declaration (in this case, it supports grid), it applies any rulesets that appear between the braces. If it doesn't understand this, it will ignore them.
 Feature queries may be constructed in a few other ways as well:
 
 * `@supports not(<declaration>)`: Only apply rules in the feature query block if the queried declaration isn't supported.
@@ -66,7 +75,16 @@ Feature queries may be constructed in a few other ways as well:
 
 ## Working with relative units
 
+Length is the formal name for a CSS value that denotes a distance measurement. It's a number followed by a unit, such as 5px. Percentages are similar to lengths, but strictly speaking, they're not considered lengths.
 
+* **pixels**: type of absolute unit. 1 in. = 25.4 mm = 101.6 Q = 2.54 cm = 6 pc = 72 pt = 96 px
+* **em**: relative unit: 1 em means the font size of the current element; its exact value varies depending on the element you're applying it to. `font-size` ems are derived from the inherited font size.
+* **rem**: short for "root em". Instead of being relative to the current element, rems are relative to the root element.
+
+> [!NOTE]
+> If you know the pixel-based font size you'd like but want to specify the declaration in ems, here's a simple formula: divide the desired pixel size by the parent (inherited) pixel size. For example, if you want a 10 px font and your element is inheriting a 12 px font, 10 / 12 = 0.8333 em.
+
+👉 When in doubt, use rems for font size, pixels for borders, and either ems or rems for most other properties.
 
 # Resources
 
