@@ -16,6 +16,10 @@ Code listings from [CSS In Depth, second edition](https://www.manning.com/books/
     - [Special values](#special-values)
     - [Feature queries using @supports()](#feature-queries-using-supports)
   - [Working with relative units](#working-with-relative-units)
+    - [Viewport-relative units](#viewport-relative-units)
+    - [Unitless numbers and line-height](#unitless-numbers-and-line-height)
+    - [CSS variables](#css-variables)
+  - [Document flow and the box model](#document-flow-and-the-box-model)
 - [Resources](#resources)
 
 
@@ -85,6 +89,57 @@ Length is the formal name for a CSS value that denotes a distance measurement. I
 > If you know the pixel-based font size you'd like but want to specify the declaration in ems, here's a simple formula: divide the desired pixel size by the parent (inherited) pixel size. For example, if you want a 10 px font and your element is inheriting a 12 px font, 10 / 12 = 0.8333 em.
 
 👉 When in doubt, use rems for font size, pixels for borders, and either ems or rems for most other properties.
+
+### Viewport-relative units
+
+ The **viewport** is the framed area in the browser window where the web page is visible. This excludes the browser's address bar, toolbars, and status bar, if present. The *large viewport* is the biggest possible viewport when all the browser's UX elements are hidden. The *small viewport* is the smallest possible viewport when all the UX elements are shown. The *dynamic viewport* behaves like small viewport when the viewport is small and like large viewport when the viewport is large.
+
+
+ The following are the four basic units that were first added to the language:
+
+* `vh`: One percent of the viewport height
+* `vw`: One percent of the viewport width
+* `vmin`: One percent of the smaller dimension, height or width
+* `vmax`: One percent of the larger dimension, height or width
+
+For example, 50 vw is equal to half the width of the viewport, and 25 vh equals 25% of the viewport's height. Vmin is based on which of the two (height or width) is smaller. This is helpful for ensuring that an element will fit on the screen regardless of its orientation. Prepend the letter "l" to use large viewport units: lvw, lvh, lvmin, lvmax. Similarly, prepend the letter "s" to use small viewport units: svw, svh, svmin, svmax.
+Prepend the letter "d" for dynamic viewport.
+
+### Unitless numbers and line-height
+
+* line-height (accepts both units and unitless values)
+* z-index
+* font-weight
+
+A unitless 0 can be used only for length values and percentages, such as in paddings, borders, and widths.
+
+> [!NOTE]
+> When an element has a value defined using a length (px, em, rem, and so forth), its computed value is inherited by child elements.
+
+### CSS variables
+
+You can declare a variable and assign it a value; then you can reference this value throughout your stylesheet (DRY pattern). The name must begin with two hyphens (--) to distinguish it from other CSS properties, followed by whatever name you'd like to use. A function called `var()` allows the use of variables. This function also accepts a second argument as a fallback value.
+
+```css
+/* When a descendant element of the root uses the variables, 
+   these are the values they'll resolve to. */
+:root {
+  --main-font: Helvetica, Arial, sans-serif;
+  --brand-color: #369;
+}
+
+p {
+  font-family: var(--main-font, sans-serif);
+  color: var(--secondary-color, blue);
+}
+```
+
+> [!NOTE]
+> If a var() function evaluates to an invalid value, the property will be set to its initial value.
+
+## Document flow and the box model
+
+
 
 # Resources
 
